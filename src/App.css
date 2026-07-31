@@ -1,0 +1,564 @@
+/* VARIABLES */
+:root {
+    --bg: #eceff3;
+    /* gris hielo */
+    --text: #222;
+    --card-bg: #f5f6f8;
+    /* gris suave */
+    --card-border: #d9dce2;
+    --input-bg: #f0f2f5;
+    --input-border: #cfd3da;
+    --shadow: rgba(0, 0, 0, 0.05);
+    --footer-bg: #e3e6eb;
+}
+
+.dark {
+    --bg: #0f111a;
+    /* azul noche profundo */
+    --text: #e8ecf8;
+    /* blanco azulado */
+    --card-bg: #1a1d29;
+    /* azul grisáceo */
+    --card-border: #2a2e3d;
+    /* borde suave */
+    --input-bg: #1a1d29;
+    /* igual que card */
+    --input-border: #3a3f52;
+    /* azul violeta Copilot */
+    --shadow: rgba(0, 0, 0, 0.45);
+    /* sombra profunda */
+    --footer-bg: #1a1d29;
+    /* coherente con tarjetas */
+}
+
+.dark .va-input {
+    color: #e8ecf8;
+    /* blanco azulado estilo Copilot */
+}
+
+/* GLOBAL */
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* HEADER ANIMADO */
+.header-bar {
+    width: 100%;
+    height: 6px;
+    border-radius: 0 0 12px 12px;
+    background: linear-gradient(90deg, #6a5acd, #9b8fff, #6a5acd);
+    background-size: 200% 200%;
+    animation: gradientMove 6s ease infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =========================================================
+   CONTENEDOR GLOBAL
+   ========================================================= */
+.main-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem;
+
+    margin-top: 228px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-bottom: 100px;
+}
+
+
+
+/* =========================================================
+   BOTÓN DARK MODE
+   ========================================================= */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;  
+    height: 50px;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 50%; /* círculo perfecto */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 1000;
+    opacity: 0.9;
+}
+
+
+.theme-toggle:hover {
+    opacity: 1;
+    box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.15);
+}
+
+
+/* =========================================================
+   VIDEO ANALYSER
+   ========================================================= */
+.video-analyser {
+    width: 100%;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px var(--shadow);
+    border: 1px solid var(--card-border);
+}
+
+/* Secciones internas */
+.va-section {
+    margin-bottom: 2rem;
+}
+
+/* Títulos */
+.va-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+}
+
+.va-title-wide {
+    grid-column: span 2;
+}
+
+/* Input */
+.va-input {
+    width: 100%;
+    max-width: 100%;
+    /* evita que sobresalga */
+    padding: 0.9rem 1rem;
+    border-radius: 10px;
+    border: 1px solid var(--input-border);
+    background: var(--input-bg);
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    /* asegura coherencia */
+}
+
+.va-input:focus {
+    outline: none;
+    background: var(--card-bg);
+    box-shadow: 0 0 0 3px rgba(106, 90, 205, 0.15);
+}
+
+/* =========================================================
+   INFO CARD
+   ========================================================= */
+.info-card {
+    background: var(--input-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+}
+
+/* Grid adaptable */
+.va-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.va-item {
+    display: flex;
+    flex-direction: column;
+    /* fuerza el salto de línea */
+    align-items: flex-start;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow);
+    word-break: break-word;
+}
+
+.va-item:hover {
+    background: var(--input-bg);
+    border-color: var(--card-border);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+    transition: all 0.25s ease;
+}
+
+
+.va-label {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.va-value {
+    margin-top: 0.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* FOOTER ========================================================= */
+
+footer {
+    width: 100%;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    text-align: center;
+    background: var(--card-bg);
+    border-top: 1px solid var(--card-border);
+    border-radius: 12px 12px 0 0;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+}
+
+/* Vista previa grande dentro del grid */
+.va-preview {
+    grid-column: span 2;
+    /* ocupa 2 columnas */
+    grid-row: span 3;
+    /* ocupa 3 filas */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.va-preview-video {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 12px;
+    margin-top: 0.6rem;
+    box-shadow: 0 2px 10px var(--shadow);
+}
+
+
+/* =========================================================
+Loader
+========================================================= */
+
+.va-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid transparent;
+    border-radius: 50%;
+    animation: va-spin 0.8s linear infinite;
+    margin: 20px auto;
+}
+
+/* Modo claro */
+body:not(.dark) .va-spinner {
+    border-color: rgba(0, 0, 0, 0.2);
+    border-top-color: #000;
+}
+
+/* Modo oscuro */
+body.dark .va-spinner {
+    border-color: rgba(255, 255, 255, 0.2);
+    border-top-color: #fff;
+}
+
+.dark .va-item:hover {
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+}
+
+.dark .va-retry:hover {
+    box-shadow: 0 8px 26px rgba(0, 0, 0, 0.35);
+}
+
+body.dark .theme-toggle {
+    opacity: 1;
+    color: #e8ecf8;
+    border-color: #3a3f52;
+}
+
+
+@keyframes va-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ===========================
+input
+============================ */
+
+.va-input-locked {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+/* logo */
+
+.logo {
+    width: 600px;
+    padding-top: 100px;
+    transition: opacity 0.3s ease;
+}
+
+/* Modo oscuro → cambia la imagen */
+body.dark .logo {
+    content: url("./public/vidalyze_logo_2.png");
+}
+
+/* ajustes barra logo */
+
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-bottom: 40px;
+
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--card-border);
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 4px 18px var(--shadow);
+    transition: all 0.5s ease;
+    z-index: 2000;
+}
+
+
+/* Cuando hay URL → barra compacta */
+.top-bar.compact {
+    height: 24px;
+}
+
+.top-bar .logo {
+    width: 512px;
+    transition: all 0.3s ease;
+    margin: 0 auto; /* centrado */
+}
+
+.top-bar.compact .logo {
+    width: 180px;
+    padding-left: 16px;
+    padding-top: 40px;
+}
+
+.top-bar.compact .theme-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+}
+
+body.url-active .main-container {
+    margin-top: 50px;
+}
+
+/* boton claro oscuro */
+/* Toggle estilo iPhone */
+.theme-switch {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 2000;
+    cursor: pointer;
+}
+
+/* Fondo del switch */
+.switch-track {
+    width: 52px;
+    height: 28px;
+    background: var(--card-border);
+    border-radius: 28px;
+    position: relative;
+    transition: background 0.25s ease;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.15);
+}
+
+/* Cuando está activado (modo oscuro) */
+.switch-track.on {
+    background: #6a5acd; /* violeta Copilot */
+}
+
+/* Botón interior */
+.switch-thumb {
+    width: 24px;
+    height: 24px;
+    background: var(--card-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.25s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+/* Movimiento del botón cuando está ON */
+.switch-track.on .switch-thumb {
+    transform: translateX(24px);
+}
+
+
+/* historial */
+
+.va-history {
+    width: 100%;
+    margin-top: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.va-history h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+.va-history ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.va-history li {
+    padding: 0.6rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    word-break: break-word;
+}
+
+.va-history li:hover {
+    background: var(--input-bg);
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+/* =========================================================
+   ASIDE NAVEGACIÓN LATERAL
+   ========================================================= */
+
+.side-nav {
+    position: fixed;
+    left: 20px;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 3000;
+}
+
+.side-nav button {
+    padding: 0.8rem 1.2rem;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px var(--shadow);
+    width: 160px;
+    text-align: left;
+}
+
+.side-nav button:hover {
+    background: var(--input-bg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateX(4px);
+}
+
+/* ASIDE NORMAL (barra grande) */
+.side-nav {
+    position: fixed;
+    left: 20px;
+    top: 260px; /* alineado con tu logo grande */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 3000;
+    transition: top 0.4s ease;
+}
+
+/* ASIDE COMPACTO (barra reducida) */
+.side-nav.compact {
+    top: 80px; /* se acerca a la barra compacta */
+}
+
+/* errores */
+
+.va-error {
+    background: #ffdddd;
+    border: 1px solid #ffaaaa;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    color: #a33;
+    font-weight: 500;
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* botones */
+
+.va-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.va-action-btn {
+    padding: 0.8rem 1.4rem;
+    border-radius: 10px;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 6px var(--shadow);
+}
+
+.va-action-btn:hover {
+    background: var(--input-bg);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
